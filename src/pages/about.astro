@@ -1,5 +1,24 @@
 ---
+import './styles/global.css';
 
+const pageTitle = "About Me";
+
+const identity = {
+    firstname: "Jaydan",
+    country: "Australia",
+    occupation: "System Administrator",
+    hobbies: ["Aquarium Fishkeeping", "Video Games"],
+};
+
+const skills = ["HTML", "CSS", "Javascript", "React", "Astro", "Writing Docs"];
+
+const happy = true;
+const finished = false;
+const goal = 3;
+
+const skillColor = "navy";
+const fontWeight = "bold";
+const textCase = "uppercase";
 ---
 
 <html lang="en">
@@ -8,15 +27,33 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Jaydan Cottier</title>
+		<title>{pageTitle}</title>
+        <style define:vars={{skillColor, fontWeight, textCase}}>
+            h1 {
+              color: purple;
+              font-size: 4rem;
+            }
+            .skill, .hobby {
+                color: var(--skillColor);
+                font-weight: var(--fontWeight);
+                text-transform: var(--textCase)
+            }
+          </style>
 	</head>
 	<body>
 <a href="/">Home</a>
 <a href="/about/">About</a>
 <a href="/blog/">Blog</a>
-		<h1>About | Jaydan Cottier</h1>
+		<h1>{pageTitle}</h1>
         <h2>... and my new Astro site!</h2>
 
-        <p>I am working through Astro's introductory tutorial. This is the second page on my website, and it's the first on i built myself</p>
+        <p>My skills are:</p>
+        <ul>
+          {skills.map((skill) => <li class="skill">{skill}</li>)}
+        </ul>
+        <p>My hobbies are:</p>
+        <ul>
+          {identity.hobbies.map((hobby) => <li class="hobby">{hobby}</li>)}
+        </ul>
 	</body>
 </html>
